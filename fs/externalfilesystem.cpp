@@ -10,6 +10,7 @@ void ExternalFilesystem::SetPath(QString path)
 {
     mPath = path;
     qDebug() << "Sucessfully set filesystem root to" << path;
+    qDebug() << mPath;
 }
 
 bool ExternalFilesystem::DoesFileExist(QString filePath)

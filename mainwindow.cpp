@@ -14,8 +14,19 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+}
 
-    /*Yaz0Stream* strm = new Yaz0Stream(ExternalFilesystem::OpenFile("StageData/IslandFleetGalaxy/IslandFleetGalaxyMap.arc"));
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    QString path = QFileDialog::getExistingDirectory(this, tr("Choose SMG1/2 Extracted Folder"), ".", QFileDialog::ReadOnly);
+    ExternalFilesystem::SetPath(path + "/");
+
+    Yaz0Stream* strm = new Yaz0Stream(ExternalFilesystem::OpenFile("StageData/IslandFleetGalaxy/IslandFleetGalaxyMap.arc"));
     BinaryStream* rdr = new BinaryStream(strm->GetDecompressedData());
     RARCFilesystem* rarc = new RARCFilesystem(rdr);
     RARCFileEntry* e = rarc->OpenFile("/Stage/jmp/Start/LayerB/StartInfo");
@@ -27,16 +38,5 @@ MainWindow::MainWindow(QWidget *parent)
     foreach(BCSV::Entry* e, b->mEntries)
     {
         qDebug() << BCSVUtil::GetValue<float>(e, "pos_x");
-    }*/
-}
-
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
-
-void MainWindow::on_pushButton_clicked()
-{
-    QString path = QFileDialog::getExistingDirectory(this, tr("Choose SMG1/2 Extracted Folder"), ".", QFileDialog::ReadOnly);
-    ExternalFilesystem::SetPath(path);
+    }
 }

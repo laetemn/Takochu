@@ -86,6 +86,14 @@ RARCFilesystem::RARCFilesystem(BinaryStream* s)
     mStream = s;
 }
 
+RARCFilesystem::~RARCFilesystem()
+{
+    if (mStream)
+    {
+        delete mStream;
+    }
+}
+
 RARCFileEntry* RARCFilesystem::OpenFile(QString name)
 {
     QList<FileEntry*> vals = mFileEntries.values();

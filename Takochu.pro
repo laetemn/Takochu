@@ -22,7 +22,8 @@ SOURCES += \
     io/binarystream.cpp \
     io/yaz0stream.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    util/settingsmgr.cpp
 
 HEADERS += \
     fmt/bcsv.h \
@@ -31,7 +32,8 @@ HEADERS += \
     io/binarystream.h \
     io/yaz0stream.h \
     mainwindow.h \
-    util/bcsvutil.h
+    util/bcsvutil.h \
+    util/settingsmgr.h
 
 FORMS += \
     mainwindow.ui

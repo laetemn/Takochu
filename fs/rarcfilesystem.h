@@ -12,6 +12,7 @@ class RARCFilesystem
 {
 public:
     RARCFilesystem(BinaryStream* s);
+    ~RARCFilesystem();
 
     RARCFileEntry* OpenFile(QString name);
     QByteArray* GetFile(RARCFileEntry* entry) const;

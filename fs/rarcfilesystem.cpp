@@ -5,7 +5,9 @@
 RARCFilesystem::RARCFilesystem(BinaryStream* s)
 {
     if (s->ReadString(4) != "RARC")
-        return;
+    {
+        throw new std::exception("File is not a RARC!");
+    }
 
     s->Seek(0xC);
     mFileDataOffset = s->ReadU32() + 0x20;

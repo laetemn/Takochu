@@ -6,8 +6,7 @@ Yaz0Stream::Yaz0Stream(BinaryStream* s)
 {
     if (s->ReadString(4) != "Yaz0")
     {
-        qDebug() << "File is NOT Yaz0 compressed!";
-        return;
+        throw new std::exception("Invalid Yaz0!");
     }
 
     quint32 decompressedSize = s->ReadU32();

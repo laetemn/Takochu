@@ -167,18 +167,15 @@ namespace Takochu.io
             if (mPosition + sizeof(float) > GetLength())
                 throw new Exception("MemoryFile::ReadSingle() - Read is out of bounds.");
 
+            byte[] output = ReadBytes(4);
+
             if (mIsBigEndian)
             {
-                return Convert.ToSingle(((mBuffer[mPosition++] & 0xFF) << 24) |
-                        ((mBuffer[mPosition++] & 0xFF) << 16) |
-                        ((mBuffer[mPosition++] & 0xFF) << 8) |
-                        (mBuffer[mPosition++] & 0xFF));
+                Array.Reverse(output);
+                return BitConverter.ToSingle(output, 0);
             }
 
-            return Convert.ToSingle((mBuffer[mPosition++] & 0xFF) |
-                        ((mBuffer[mPosition++] & 0xFF) << 8) |
-                        ((mBuffer[mPosition++] & 0xFF) << 16) |
-                        ((mBuffer[mPosition++] & 0xFF) << 24));
+            return BitConverter.ToSingle(output, 0);
         }
 
         public override string ReadString()
@@ -188,7 +185,6 @@ namespace Takochu.io
             while((b = ReadByte()) != 0)
             {
                 bytes.Add(b);
-                Console.WriteLine(b);
             }
 
             return mEncoding.GetString(bytes.ToArray());

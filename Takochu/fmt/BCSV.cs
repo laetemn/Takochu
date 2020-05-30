@@ -328,7 +328,7 @@ namespace Takochu.fmt
         {
             sHashTable = new Dictionary<int, string>();
 
-            string[] lines = File.ReadAllLines("field_names.txt");
+            string[] lines = File.ReadAllLines("res/FieldNames.txt");
 
             foreach(string line in lines)
             {

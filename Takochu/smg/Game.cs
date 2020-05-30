@@ -9,12 +9,6 @@ namespace Takochu.smg
 {
     public class Game
     {
-        enum Version
-        {
-            SMG1,
-            SMG2
-        }
-
         public Game(FilesystemBase filesystem)
         {
             mFilesystem = filesystem;
@@ -40,6 +34,7 @@ namespace Takochu.smg
         {
             List<string> galaxies = new List<string>();
 
+            // this solution works for both games
             List<string> dirs = mFilesystem.GetDirectories("StageData");
             foreach(string dir in dirs)
             {

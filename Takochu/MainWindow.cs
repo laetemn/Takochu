@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Takochu.fmt;
 using Takochu.io;
+using Takochu.ui;
+using Takochu.util;
 
 namespace Takochu
 {
@@ -19,17 +21,33 @@ namespace Takochu
         {
             InitializeComponent();
 
-            BCSV.PopulateHashTable();
+            string gamePath = Properties.Settings.Default.GamePath;
+            Console.WriteLine(gamePath);
 
-            ExternalFilesystem e = new ExternalFilesystem("C:/Users/xarf9/Hacking/Wii/SMG2/Filesystem/DATA/files/");
+            // is it valid AND does it still exist?
+            if (gamePath != "" && Directory.Exists(gamePath))
+            {
+                Program.sGame = new smg.Game(new ExternalFilesystem(gamePath));
+            }
+        }
 
-            Console.WriteLine(e.DoesDirectoryExist("LocalizeData/UsEnglish"));
-            Console.WriteLine(e.DoesDirectoryExist("GAY"));
+        private void selectGameFolderBtn_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
 
-            RARCFilesystem rarcFS = new RARCFilesystem(e.OpenFile("ObjectData/Mario.arc"));
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.GamePath = dialog.SelectedPath;
+                Properties.Settings.Default.Save();
 
-            FileBase f = rarcFS.OpenFile("/Mario/Mario.bdl");
-            BMD bmd = new BMD(f);
+                Program.sGame = new smg.Game(new ExternalFilesystem(dialog.SelectedPath));
+            }
+        }
+
+        private void bcsvEditorBtn_Click(object sender, EventArgs e)
+        {
+            BCSVEditorForm bcsvEditor = new BCSVEditorForm();
+            bcsvEditor.Show();
         }
     }
 }

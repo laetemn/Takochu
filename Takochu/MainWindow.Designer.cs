@@ -60,6 +60,7 @@
             // bcsvEditorBtn
             // 
             this.bcsvEditorBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.bcsvEditorBtn.Enabled = false;
             this.bcsvEditorBtn.Image = ((System.Drawing.Image)(resources.GetObject("bcsvEditorBtn.Image")));
             this.bcsvEditorBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.bcsvEditorBtn.Name = "bcsvEditorBtn";

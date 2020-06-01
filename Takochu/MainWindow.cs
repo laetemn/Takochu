@@ -26,13 +26,17 @@ namespace Takochu
             if (gamePath == "")
             {
                 MessageBox.Show("Please select a path that contains the dump of your SMG1 / SMG2 copy.");
-                SetGamePath();
+                bool res = SetGamePath();
+
+                if (!res)
+                    return;
             }
 
             // is it valid AND does it still exist?
             if (gamePath != "" && Directory.Exists(gamePath))
             {
                 Program.sGame = new smg.Game(new ExternalFilesystem(gamePath));
+                bcsvEditorBtn.Enabled = true;
             }
         }
 
@@ -47,7 +51,7 @@ namespace Takochu
             bcsvEditor.Show();
         }
 
-        private void SetGamePath()
+        private bool SetGamePath()
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
 
@@ -63,12 +67,16 @@ namespace Takochu
                     Program.sGame = new smg.Game(new ExternalFilesystem(dialog.SelectedPath));
 
                     MessageBox.Show("Path set successfully! You may now use Takochu.");
+                    return true;
                 }
                 else
                 {
                     MessageBox.Show("Invalid folder. If you have already selected a correct folder, that will continue to be your base folder.");
+                    return false;
                 }
             }
+
+            return false;
         }
     }
 }

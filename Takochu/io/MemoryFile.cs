@@ -87,14 +87,14 @@ namespace Takochu.io
             if (mPosition + sizeof(short) > GetLength())
                 throw new Exception("MemoryFile::ReadInt16() - Read is out of bounds.");
 
+            byte[] val = ReadBytes(0x2);
+
             if (mIsBigEndian)
             {
-                return Convert.ToInt16(((mBuffer[mPosition++] & 0xFF) << 8 ) | 
-                        (mBuffer[mPosition++] & 0xFF));
+                Array.Reverse(val);
             }
 
-            return Convert.ToInt16(((mBuffer[mPosition++] & 0xFF) | 
-                    (mBuffer[mPosition++] & 0xFF) << 8));
+            return BitConverter.ToInt16(val, 0);
         }
 
         public override int ReadInt32()
@@ -102,18 +102,14 @@ namespace Takochu.io
             if (mPosition + sizeof(int) > GetLength())
                 throw new Exception("MemoryFile::ReadInt32() - Read is out of bounds.");
 
+            byte[] val = ReadBytes(0x4);
+
             if (mIsBigEndian)
             {
-                return Convert.ToInt32(((mBuffer[mPosition++] & 0xFF) << 24) | 
-                        ((mBuffer[mPosition++] & 0xFF) << 16) | 
-                        ((mBuffer[mPosition++] & 0xFF) << 8) | 
-                        (mBuffer[mPosition++] & 0xFF));
+                Array.Reverse(val);
             }
 
-            return Convert.ToInt32((mBuffer[mPosition++] & 0xFF) |
-                        ((mBuffer[mPosition++] & 0xFF) << 8) |
-                        ((mBuffer[mPosition++] & 0xFF) << 16) |
-                        ((mBuffer[mPosition++] & 0xFF) << 24));
+            return BitConverter.ToInt32(val, 0);
         }
 
         public override ushort ReadUInt16()
@@ -121,14 +117,14 @@ namespace Takochu.io
             if (mPosition + sizeof(ushort) > GetLength())
                 throw new Exception("MemoryFile::ReadUInt16() - Read is out of bounds.");
 
+            byte[] val = ReadBytes(0x2);
+
             if (mIsBigEndian)
             {
-                return Convert.ToUInt16(((mBuffer[mPosition++] & 0xFF) << 8) | 
-                        (mBuffer[mPosition++] & 0xFF));
+                Array.Reverse(val);
             }
 
-            return Convert.ToUInt16(((mBuffer[mPosition++] & 0xFF) | 
-                    (mBuffer[mPosition++] & 0xFF) << 8));
+            return BitConverter.ToUInt16(val, 0);
         }
 
         public override uint ReadUInt32()
@@ -136,18 +132,14 @@ namespace Takochu.io
             if (mPosition + sizeof(uint) > GetLength())
                 throw new Exception("MemoryFile::ReadUInt32() - Read is out of bounds.");
 
+            byte[] val = ReadBytes(0x4);
+
             if (mIsBigEndian)
             {
-                return Convert.ToUInt32(((mBuffer[mPosition++] & 0xFF) << 24) |
-                        ((mBuffer[mPosition++] & 0xFF) << 16) |
-                        ((mBuffer[mPosition++] & 0xFF) << 8) |
-                        (mBuffer[mPosition++] & 0xFF));
+                Array.Reverse(val);
             }
 
-            return Convert.ToUInt32((mBuffer[mPosition++] & 0xFF) |
-                        ((mBuffer[mPosition++] & 0xFF) << 8) |
-                        ((mBuffer[mPosition++] & 0xFF) << 16) |
-                        ((mBuffer[mPosition++] & 0xFF) << 24));
+            return BitConverter.ToUInt32(val, 0);
         }
 
         public override byte[] ReadBytes(int num)

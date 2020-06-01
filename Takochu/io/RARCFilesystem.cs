@@ -393,7 +393,6 @@ namespace Takochu.io
 
         public override FileBase OpenFile(string file)
         {
-            Console.WriteLine(PathToKey(file));
             if (!mFileEntries.ContainsKey(PathToKey(file)))
                 throw new Exception($"RARCFilesystem::OpenFile() - File {file} not found in RARC.");
 

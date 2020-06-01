@@ -22,7 +22,12 @@ namespace Takochu
             InitializeComponent();
 
             string gamePath = Properties.Settings.Default.GamePath;
-            Console.WriteLine(gamePath);
+
+            if (gamePath == "")
+            {
+                MessageBox.Show("Please select a path that contains the dump of your SMG1 / SMG2 copy.");
+                SetGamePath();
+            }
 
             // is it valid AND does it still exist?
             if (gamePath != "" && Directory.Exists(gamePath))
@@ -33,21 +38,37 @@ namespace Takochu
 
         private void selectGameFolderBtn_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                Properties.Settings.Default.GamePath = dialog.SelectedPath;
-                Properties.Settings.Default.Save();
-
-                Program.sGame = new smg.Game(new ExternalFilesystem(dialog.SelectedPath));
-            }
+            SetGamePath();
         }
 
         private void bcsvEditorBtn_Click(object sender, EventArgs e)
         {
             BCSVEditorForm bcsvEditor = new BCSVEditorForm();
             bcsvEditor.Show();
+        }
+
+        private void SetGamePath()
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string path = dialog.SelectedPath;
+                if (Directory.Exists($"{path}/StageData") && Directory.Exists($"{path}/ObjectData"))
+                {
+
+                    Properties.Settings.Default.GamePath = dialog.SelectedPath;
+                    Properties.Settings.Default.Save();
+
+                    Program.sGame = new smg.Game(new ExternalFilesystem(dialog.SelectedPath));
+
+                    MessageBox.Show("Path set successfully! You may now use Takochu.");
+                }
+                else
+                {
+                    MessageBox.Show("Invalid folder. If you have already selected a correct folder, that will continue to be your base folder.");
+                }
+            }
         }
     }
 }

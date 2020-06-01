@@ -63,8 +63,8 @@
             this.bcsvEditorBtn.Image = ((System.Drawing.Image)(resources.GetObject("bcsvEditorBtn.Image")));
             this.bcsvEditorBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.bcsvEditorBtn.Name = "bcsvEditorBtn";
-            this.bcsvEditorBtn.Size = new System.Drawing.Size(98, 22);
-            this.bcsvEditorBtn.Text = "toolStripButton1";
+            this.bcsvEditorBtn.Size = new System.Drawing.Size(73, 22);
+            this.bcsvEditorBtn.Text = "BCSV Editor";
             this.bcsvEditorBtn.Click += new System.EventHandler(this.bcsvEditorBtn_Click);
             // 
             // MainWindow

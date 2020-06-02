@@ -35,10 +35,10 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.openBCSVBtn = new System.Windows.Forms.ToolStripButton();
             this.saveBCSVBtn = new System.Windows.Forms.ToolStripButton();
-            this.bcsvGridView = new System.Windows.Forms.DataGridView();
             this.filesystemView = new System.Windows.Forms.TreeView();
+            this.bcsvEditorsTabControl = new System.Windows.Forms.TabControl();
+            this.saveAll_Btn = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bcsvGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -52,10 +52,11 @@
             this.archiveTextBox,
             this.toolStripSeparator1,
             this.openBCSVBtn,
-            this.saveBCSVBtn});
+            this.saveBCSVBtn,
+            this.saveAll_Btn});
             this.toolStrip1.Location = new System.Drawing.Point(4, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(886, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(937, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -97,18 +98,8 @@
             this.saveBCSVBtn.Name = "saveBCSVBtn";
             this.saveBCSVBtn.Size = new System.Drawing.Size(35, 22);
             this.saveBCSVBtn.Text = "Save";
+            this.saveBCSVBtn.ToolTipText = "Save the currently viewed BCSV file.";
             this.saveBCSVBtn.Click += new System.EventHandler(this.saveBCSVBtn_Click);
-            // 
-            // bcsvGridView
-            // 
-            this.bcsvGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.bcsvGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.bcsvGridView.Location = new System.Drawing.Point(0, 253);
-            this.bcsvGridView.Name = "bcsvGridView";
-            this.bcsvGridView.Size = new System.Drawing.Size(921, 354);
-            this.bcsvGridView.TabIndex = 1;
             // 
             // filesystemView
             // 
@@ -116,24 +107,46 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.filesystemView.Location = new System.Drawing.Point(0, 28);
             this.filesystemView.Name = "filesystemView";
-            this.filesystemView.Size = new System.Drawing.Size(921, 219);
+            this.filesystemView.Size = new System.Drawing.Size(972, 219);
             this.filesystemView.TabIndex = 2;
             this.filesystemView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.filesystemView_NodeMouseDoubleClick);
+            // 
+            // bcsvEditorsTabControl
+            // 
+            this.bcsvEditorsTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bcsvEditorsTabControl.Location = new System.Drawing.Point(0, 253);
+            this.bcsvEditorsTabControl.Name = "bcsvEditorsTabControl";
+            this.bcsvEditorsTabControl.SelectedIndex = 0;
+            this.bcsvEditorsTabControl.Size = new System.Drawing.Size(972, 355);
+            this.bcsvEditorsTabControl.TabIndex = 3;
+            // 
+            // saveAll_Btn
+            // 
+            this.saveAll_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.saveAll_Btn.Enabled = false;
+            this.saveAll_Btn.Image = ((System.Drawing.Image)(resources.GetObject("saveAll_Btn.Image")));
+            this.saveAll_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.saveAll_Btn.Name = "saveAll_Btn";
+            this.saveAll_Btn.Size = new System.Drawing.Size(52, 19);
+            this.saveAll_Btn.Text = "Save All";
+            this.saveAll_Btn.ToolTipText = "Save All of the currently opened BCSV files.";
+            this.saveAll_Btn.Click += new System.EventHandler(this.saveAll_Btn_Click);
             // 
             // BCSVEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(921, 608);
+            this.ClientSize = new System.Drawing.Size(972, 608);
+            this.Controls.Add(this.bcsvEditorsTabControl);
             this.Controls.Add(this.filesystemView);
-            this.Controls.Add(this.bcsvGridView);
             this.Controls.Add(this.toolStrip1);
             this.Name = "BCSVEditorForm";
             this.Text = "BCSVEditorForm";
             this.Load += new System.EventHandler(this.BCSVEditorForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bcsvGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,7 +160,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton openBCSVBtn;
         private System.Windows.Forms.ToolStripButton saveBCSVBtn;
-        private System.Windows.Forms.DataGridView bcsvGridView;
         private System.Windows.Forms.TreeView filesystemView;
+        private System.Windows.Forms.TabControl bcsvEditorsTabControl;
+        private System.Windows.Forms.ToolStripButton saveAll_Btn;
     }
 }

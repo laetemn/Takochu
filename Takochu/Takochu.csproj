@@ -85,6 +85,7 @@
     </Compile>
     <Compile Include="util\GameUtil.cs" />
     <Compile Include="util\SettingsUtil.cs" />
+    <Compile Include="util\Translator.cs" />
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -117,8 +118,10 @@
     <Content Include="res\FieldNames.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="res\GalaxyNames_SMG1.txt" />
-    <Content Include="res\GalaxyNames_SMG2.txt" />
+    <Content Include="res\translations\en\GalaxyNames_SMG1.txt" />
+    <Content Include="res\translations\en\GalaxyNames_SMG2.txt" />
+    <Content Include="res\translations\de\SimpleGalaxyNames_SMG1.txt" />
+    <Content Include="res\translations\de\SimpleGalaxyNames_SMG2.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Takochu.fmt;
 using Takochu.smg;
+using Takochu.util;
 
 namespace Takochu
 {
@@ -23,6 +24,7 @@ namespace Takochu
             Application.Run(new MainWindow());
         }
 
+        public static Translator sTranslator;
         public static Game sGame;
     }
 }

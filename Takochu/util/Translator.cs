@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.IO;
 
 namespace Takochu.util
@@ -35,7 +36,7 @@ namespace Takochu.util
             string[] lines = File.ReadAllLines()
         }*/
 
-        public string[] GetGalaxyNames()
+        public Dictionary<string, string> GetGalaxyNames()
         {
             string path = "";
 
@@ -54,7 +55,17 @@ namespace Takochu.util
                     break;
             }
 
-            return File.ReadAllLines(path);
+            string[] lines = File.ReadAllLines(path);
+
+            Dictionary<string, string> ret = new Dictionary<string, string>();
+
+            foreach(string line in lines)
+            {
+                string[] split = line.Split('=');
+                ret.Add(split[0], split[1]);
+            }
+
+            return ret;
         }
 
         private Language mLanguage;

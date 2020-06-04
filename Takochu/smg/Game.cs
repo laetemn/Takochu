@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Takochu.io;
+using Takochu.util;
 
 namespace Takochu.smg
 {
@@ -12,6 +13,13 @@ namespace Takochu.smg
         public Game(FilesystemBase filesystem)
         {
             mFilesystem = filesystem;
+
+            // now we decide which game we're dealing with
+            // just checking to see if a file exists in one game but not the other.
+            if (mFilesystem.DoesFileExist("/ObjectData/ProductMapObjDataTable.arc"))
+                GameUtil.SetGame(GameUtil.Game.SMG2);
+            else
+                GameUtil.SetGame(GameUtil.Game.SMG1);
         }
 
         public void Close()
@@ -27,7 +35,7 @@ namespace Takochu.smg
         public bool IsGalaxy(string galaxy)
         {
             // this solution works for both games
-            return mFilesystem.DoesFileExist($"StageData/{galaxy}/{galaxy}Scenario.arc");
+            return mFilesystem.DoesFileExist($"/StageData/{galaxy}/{galaxy}Scenario.arc");
         }
 
         public List<string> GetGalaxies()
@@ -35,7 +43,7 @@ namespace Takochu.smg
             List<string> galaxies = new List<string>();
 
             // this solution works for both games
-            List<string> dirs = mFilesystem.GetDirectories("StageData");
+            List<string> dirs = mFilesystem.GetDirectories("/StageData");
             foreach(string dir in dirs)
             {
                 if (IsGalaxy(dir))

@@ -35,6 +35,9 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GL_EditorFramework">
+      <HintPath>..\..\..\..\Downloads\GL_EditorFramework-master\Gl_EditorFramework\bin\Debug\GL_EditorFramework.dll</HintPath>
+    </Reference>
     <Reference Include="OpenTK">
       <HintPath>..\..\..\..\Downloads\GL_EditorFramework-master\Gl_EditorFramework\bin\Debug\OpenTK.dll</HintPath>
     </Reference>
@@ -83,6 +86,18 @@
     <Compile Include="ui\BCSVEditorForm.Designer.cs">
       <DependentUpon>BCSVEditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ui\EditorWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ui\EditorWindow.Designer.cs">
+      <DependentUpon>EditorWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ui\RARCExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ui\RARCExplorer.Designer.cs">
+      <DependentUpon>RARCExplorer.cs</DependentUpon>
+    </Compile>
     <Compile Include="util\GameUtil.cs" />
     <Compile Include="util\SettingsUtil.cs" />
     <Compile Include="util\Translator.cs" />
@@ -101,6 +116,12 @@
     <EmbeddedResource Include="ui\BCSVEditorForm.resx">
       <DependentUpon>BCSVEditorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ui\EditorWindow.resx">
+      <DependentUpon>EditorWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\RARCExplorer.resx">
+      <DependentUpon>RARCExplorer.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -118,10 +139,18 @@
     <Content Include="res\FieldNames.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="res\translations\en\GalaxyNames_SMG1.txt" />
-    <Content Include="res\translations\en\GalaxyNames_SMG2.txt" />
-    <Content Include="res\translations\de\SimpleGalaxyNames_SMG1.txt" />
-    <Content Include="res\translations\de\SimpleGalaxyNames_SMG2.txt" />
+    <Content Include="res\translations\en\SimpleGalaxyNames_SMG1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="res\translations\en\SimpleGalaxyNames_SMG2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="res\translations\de\SimpleGalaxyNames_SMG1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="res\translations\de\SimpleGalaxyNames_SMG2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

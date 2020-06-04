@@ -21,6 +21,8 @@ namespace Takochu
         {
             InitializeComponent();
 
+            Program.sTranslator = new Translator("English");
+
             string gamePath = Properties.Settings.Default.GamePath;
 
             if (gamePath == "")
@@ -35,14 +37,44 @@ namespace Takochu
             // is it valid AND does it still exist?
             if (gamePath != "" && Directory.Exists(gamePath))
             {
-                Program.sGame = new smg.Game(new ExternalFilesystem(gamePath));
-                bcsvEditorBtn.Enabled = true;
+                Setup();
+            }
+        }
+
+        private void Setup()
+        {
+            Program.sGame = new smg.Game(new ExternalFilesystem(Properties.Settings.Default.GamePath));
+            bcsvEditorBtn.Enabled = true;
+            galaxyTreeView.Nodes.Clear();
+
+            List<string> galaxies = Program.sGame.GetGalaxies();
+            Dictionary<string, string> simpleNames = Program.sTranslator.GetGalaxyNames();
+
+            foreach(string galaxy in galaxies)
+            {
+                if (simpleNames.ContainsKey(galaxy))
+                {
+                    TreeNode node = new TreeNode(simpleNames[galaxy]);
+                    node.ToolTipText = galaxy;
+                    node.Tag = galaxy;
+                    galaxyTreeView.Nodes.Add(node);
+                }
+                else
+                {
+                    TreeNode node = new TreeNode(galaxy);
+                    node.ToolTipText = galaxy;
+                    node.Tag = galaxy;
+                    galaxyTreeView.Nodes.Add(node);
+                }
             }
         }
 
         private void selectGameFolderBtn_Click(object sender, EventArgs e)
         {
-            SetGamePath();
+            bool res = SetGamePath();
+
+            if (res)
+                Setup();
         }
 
         private void bcsvEditorBtn_Click(object sender, EventArgs e)
@@ -77,6 +109,21 @@ namespace Takochu
             }
 
             return false;
+        }
+
+        private void galaxyTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (galaxyTreeView.SelectedNode != null) 
+            {
+                EditorWindow win = new EditorWindow("butts");
+                win.Show();
+            }
+        }
+
+        private void rarcExplorer_Btn_Click(object sender, EventArgs e)
+        {
+            RARCExplorer explorer = new RARCExplorer();
+            explorer.Show();
         }
     }
 }

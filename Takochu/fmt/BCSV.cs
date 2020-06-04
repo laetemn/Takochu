@@ -284,6 +284,11 @@ namespace Takochu.fmt
                 return this[FieldNameToHash(key)];
             }
 
+            public T Get<T>(string key)
+            {
+                return (T)this[FieldNameToHash(key)];
+            }
+
             public void Set(string key, object val)
             {
                 this[FieldNameToHash(key)] = val;
